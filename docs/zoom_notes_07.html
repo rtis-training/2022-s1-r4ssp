@@ -433,9 +433,114 @@ div.tocify {
 </div>
 
 
+<blockquote>
+<h4 id="associated-material">Associated Material</h4>
+<p>Zoom notes: <a href="07-functions.html">Module 07 - Functions and
+Choices</a></p>
+<p>Readings:</p>
+<ul>
+<li><a href="https://r4ds.had.co.nz/functions.html">R for Data Science -
+Chapter 19</a></li>
+</ul>
+</blockquote>
+<p><br />
+</p>
+<div id="topics" class="section level1">
+<h1>Topics</h1>
+<div id="user-defined-functions" class="section level2">
+<h2>User-Defined Functions</h2>
+<ul>
+<li>Declaration</li>
+<li>Input arguments</li>
+<li>Returning a result</li>
+</ul>
+</div>
+<div id="scope" class="section level2">
+<h2>Scope</h2>
+</div>
+<div id="flow-of-control" class="section level2">
+<h2>Flow of Control</h2>
+<ul>
+<li>Types</li>
+<li>Conditional execution (branching)</li>
+<li>if, else, and else if</li>
+<li>Comparison operators</li>
+<li>Boolean logic operators</li>
+<li>Complex conditionals</li>
+</ul>
+</div>
+<div id="exercise" class="section level2">
+<h2>Exercise</h2>
+<p>Even seemingly simple programs can involve elaborate flow of control.
+The simple game Rock, Paper, Scissors (<a
+href="https://www.wikihow.com/Play-Rock,-Paper,-Scissors"
+class="uri">https://www.wikihow.com/Play-Rock,-Paper,-Scissors</a>) can
+be implemented with a complex conditional structure. Write a function to
+play the game.</p>
+<p>In the example solution below, we use the R function
+<code>sample</code> to randomly select a move for each of two players
+(<a
+href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/sample"
+class="uri">https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/sample</a>).
+Alternatively, the players’ choices could be passed in as input
+arguments.</p>
+<p>Note that there are many ways that the conditional logic can be
+implemented, so your solution may be different. The general rule is that
+we try to keep our conditional logic as succinct as possible, while
+still making it easy for someone reading your code to understand.</p>
+<pre class="r"><code>
+rock_paper_scissors &lt;- function()
+{
+  # Vector of the three possible moves
+  moves &lt;- c(&quot;rock&quot;, &quot;paper&quot;, &quot;scissors&quot;)
+  
+  # Randomly select a move for Bob
+  bob_move &lt;- sample(moves,1)
+  
+  # Randomly select a move for Fred
+  fred_move &lt;- sample(moves,1)
+  
+  
+  # Work through the game win conditions
+  if (bob_move == fred_move){
+    winner = &quot;draw&quot;
+  }
+  
+  if( bob_move == &quot;rock&quot;){
+    if (fred_move == &quot;paper&quot;){
+      winner = &quot;fred&quot;
+    }
+    if (fred_move == &quot;scissors&quot;){
+      winner = &quot;bob&quot;
+    }
+      
+  }
+  
+  if (bob_move == &quot;paper&quot;){
+    if (fred_move == &quot;rock&quot;){
+      winner = &quot;bob&quot;
+    }
+    if (fred_move == &quot;scissors&quot;){
+      winner = &quot;fred&quot;
+    }
+  }
+  
+  if (bob_move == &quot;scissors&quot;) {
+    if (fred_move == &quot;rock&quot;){
+      winner = &quot;fred&quot;
+    }
+    if (fred_move == &quot;paper&quot;){
+      winner = &quot;bob&quot;
+    }
+  }
+  
+  # Return the winner
+  return(winner)
+} # end rock_paper_scissors</code></pre>
+</div>
+</div>
 
-
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiWm9vbSBOb3RlczogRnVuY3Rpb25zIGFuZCBDaG9pY2VzIgpkYXRlOiAiU2VtZXN0ZXIgMSwgMjAyMiIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IHRydWUKICAgIHRvY19mbG9hdDogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlCiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0KbGlicmFyeShrbml0cikKCmtuaXRyOjpvcHRzX2NodW5rJHNldCgKICBjb21tZW50ID0gIiM+IiwKICBmaWcucGF0aCA9ICJmaWd1cmVzLzA3LyIsICMgdXNlIG9ubHkgZm9yIHNpbmdsZSBSbWQgZmlsZXMKICBjb2xsYXBzZSA9IFRSVUUsCiAgZWNobyA9IFRSVUUKKQpgYGAKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiWm9vbSBOb3RlczogRnVuY3Rpb25zIGFuZCBDaG9pY2VzIgpkYXRlOiAiU2VtZXN0ZXIgMSwgMjAyMiIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IHRydWUKICAgIHRvY19mbG9hdDogdHJ1ZQogICAgdG9jX2RlcHRoOiAzCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlCiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0KbGlicmFyeShrbml0cikKCmtuaXRyOjpvcHRzX2NodW5rJHNldCgKICBjb21tZW50ID0gIiM+IiwKICBmaWcucGF0aCA9ICJmaWd1cmVzLzA3LyIsICMgdXNlIG9ubHkgZm9yIHNpbmdsZSBSbWQgZmlsZXMKICBjb2xsYXBzZSA9IFRSVUUsCiAgZWNobyA9IFRSVUUKKQpgYGAKCj4gIyMjIyBBc3NvY2lhdGVkIE1hdGVyaWFsCj4KPiBab29tIG5vdGVzOiBbTW9kdWxlIDA3IC0gRnVuY3Rpb25zIGFuZCBDaG9pY2VzXSgwNy1mdW5jdGlvbnMuaHRtbCkKPiAKPiBSZWFkaW5nczoKPgo+IC0gW1IgZm9yIERhdGEgU2NpZW5jZSAtIENoYXB0ZXIgMTldKGh0dHBzOi8vcjRkcy5oYWQuY28ubnovZnVuY3Rpb25zLmh0bWwpCgpcCgojIFRvcGljcwoKIyMgVXNlci1EZWZpbmVkIEZ1bmN0aW9ucwoKLSAgRGVjbGFyYXRpb24KLSAgSW5wdXQgYXJndW1lbnRzCi0gIFJldHVybmluZyBhIHJlc3VsdAoKIyMgU2NvcGUKCiMjIEZsb3cgb2YgQ29udHJvbAoKLSAgVHlwZXMKLSAgQ29uZGl0aW9uYWwgZXhlY3V0aW9uIChicmFuY2hpbmcpCi0gIGlmLCBlbHNlLCBhbmQgZWxzZSBpZgotICBDb21wYXJpc29uIG9wZXJhdG9ycwotICBCb29sZWFuIGxvZ2ljIG9wZXJhdG9ycwotICBDb21wbGV4IGNvbmRpdGlvbmFscwoKIyMgRXhlcmNpc2UKCkV2ZW4gc2VlbWluZ2x5IHNpbXBsZSBwcm9ncmFtcyBjYW4gaW52b2x2ZSBlbGFib3JhdGUgZmxvdyBvZiBjb250cm9sLiBUaGUgc2ltcGxlIGdhbWUgUm9jaywgUGFwZXIsIFNjaXNzb3JzIChodHRwczovL3d3dy53aWtpaG93LmNvbS9QbGF5LVJvY2ssLVBhcGVyLC1TY2lzc29ycykgY2FuIGJlIGltcGxlbWVudGVkIHdpdGggYSBjb21wbGV4IGNvbmRpdGlvbmFsIHN0cnVjdHVyZS4gV3JpdGUgYSBmdW5jdGlvbiB0byBwbGF5IHRoZSBnYW1lLiAKCkluIHRoZSBleGFtcGxlIHNvbHV0aW9uIGJlbG93LCB3ZSB1c2UgdGhlIFIgZnVuY3Rpb24gYHNhbXBsZWAgdG8gcmFuZG9tbHkgc2VsZWN0IGEgbW92ZSBmb3IgZWFjaCBvZiB0d28gcGxheWVycyAoaHR0cHM6Ly93d3cucmRvY3VtZW50YXRpb24ub3JnL3BhY2thZ2VzL2Jhc2UvdmVyc2lvbnMvMy42LjIvdG9waWNzL3NhbXBsZSkuIEFsdGVybmF0aXZlbHksIHRoZSBwbGF5ZXJzJyBjaG9pY2VzIGNvdWxkIGJlIHBhc3NlZCBpbiBhcyBpbnB1dCBhcmd1bWVudHMuIAoKTm90ZSB0aGF0IHRoZXJlIGFyZSBtYW55IHdheXMgdGhhdCB0aGUgY29uZGl0aW9uYWwgbG9naWMgY2FuIGJlIGltcGxlbWVudGVkLCBzbyB5b3VyIHNvbHV0aW9uIG1heSBiZSBkaWZmZXJlbnQuIFRoZSBnZW5lcmFsIHJ1bGUgaXMgdGhhdCB3ZSB0cnkgdG8ga2VlcCBvdXIgY29uZGl0aW9uYWwgbG9naWMgYXMgc3VjY2luY3QgYXMgcG9zc2libGUsIHdoaWxlIHN0aWxsIG1ha2luZyBpdCBlYXN5IGZvciBzb21lb25lIHJlYWRpbmcgeW91ciBjb2RlIHRvIHVuZGVyc3RhbmQuCgoKYGBge3Igcm9ja19wYXBlcl9zY2lzc29yc30KCnJvY2tfcGFwZXJfc2Npc3NvcnMgPC0gZnVuY3Rpb24oKQp7CiAgIyBWZWN0b3Igb2YgdGhlIHRocmVlIHBvc3NpYmxlIG1vdmVzCiAgbW92ZXMgPC0gYygicm9jayIsICJwYXBlciIsICJzY2lzc29ycyIpCiAgCiAgIyBSYW5kb21seSBzZWxlY3QgYSBtb3ZlIGZvciBCb2IKICBib2JfbW92ZSA8LSBzYW1wbGUobW92ZXMsMSkKICAKICAjIFJhbmRvbWx5IHNlbGVjdCBhIG1vdmUgZm9yIEZyZWQKICBmcmVkX21vdmUgPC0gc2FtcGxlKG1vdmVzLDEpCiAgCiAgCiAgIyBXb3JrIHRocm91Z2ggdGhlIGdhbWUgd2luIGNvbmRpdGlvbnMKICBpZiAoYm9iX21vdmUgPT0gZnJlZF9tb3ZlKXsKICAgIHdpbm5lciA9ICJkcmF3IgogIH0KICAKICBpZiggYm9iX21vdmUgPT0gInJvY2siKXsKICAgIGlmIChmcmVkX21vdmUgPT0gInBhcGVyIil7CiAgICAgIHdpbm5lciA9ICJmcmVkIgogICAgfQogICAgaWYgKGZyZWRfbW92ZSA9PSAic2Npc3NvcnMiKXsKICAgICAgd2lubmVyID0gImJvYiIKICAgIH0KICAgICAgCiAgfQogIAogIGlmIChib2JfbW92ZSA9PSAicGFwZXIiKXsKICAgIGlmIChmcmVkX21vdmUgPT0gInJvY2siKXsKICAgICAgd2lubmVyID0gImJvYiIKICAgIH0KICAgIGlmIChmcmVkX21vdmUgPT0gInNjaXNzb3JzIil7CiAgICAgIHdpbm5lciA9ICJmcmVkIgogICAgfQogIH0KICAKICBpZiAoYm9iX21vdmUgPT0gInNjaXNzb3JzIikgewogICAgaWYgKGZyZWRfbW92ZSA9PSAicm9jayIpewogICAgICB3aW5uZXIgPSAiZnJlZCIKICAgIH0KICAgIGlmIChmcmVkX21vdmUgPT0gInBhcGVyIil7CiAgICAgIHdpbm5lciA9ICJib2IiCiAgICB9CiAgfQogIAogICMgUmV0dXJuIHRoZSB3aW5uZXIKICByZXR1cm4od2lubmVyKQp9ICMgZW5kIHJvY2tfcGFwZXJfc2Npc3NvcnMKYGBgCgo=</div>
 
 
 </div>
