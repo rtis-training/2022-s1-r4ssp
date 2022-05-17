@@ -31,7 +31,9 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-In this module we're going to cover some ways to improve your workflow as you use R. As you develop your understanding of R and proceed to do fancier things, you'll want to start bringing in extra features to make your life easier. When we think of a workflow there are three main phases we undertake. At the very beginning we're setting ourselves up, establishing how things will be organised, and how we intend to work. Second, we do the work - which involves testing and adjusting the established systems, and lastly, we wrap things up.
+In this module we're going to cover some ways to improve your workflow as you use R. As you develop your understanding of R and proceed to do fancier things, you'll want to start bringing in extra features to make your life easier. 
+
+When we think of a workflow there are three main phases we undertake. At the very beginning we're setting ourselves up, establishing how things will be organised, and how we intend to work. Second, we do the work - which involves testing and adjusting the established systems, and lastly, we wrap things up.
 
 \
 
@@ -49,7 +51,7 @@ My_Project/
   \- scripts/
 ```
 
-Beyond the structure of where we put things, we also want to establish the the principles of how the project will operate. Two important files in this regard are the README and the LICENSE. The README will tell yourself and others important details about the project such as where the source data came from, or how to run the code in the project (e.g. order of scripts). Secondly a LICENSE - this will become important later on when code you have written may be released for others to see (e.g. as part of a research paper) as it will set out the rules under which people may use your code.
+Beyond the structure of where we put things, we also want to establish the principles of how the project will operate. Two important files in this regard are the README and the LICENSE. The README will tell yourself and others important details about the project such as where the source data came from, or how to run the code in the project (e.g. order of scripts). Secondly, a LICENSE - this will become important later on when code you have written may be released for others to see (e.g. as part of a research paper) as it will set out the rules under which people may use your code.
 
 \
 
@@ -57,7 +59,7 @@ Beyond the structure of where we put things, we also want to establish the the p
 
 When we're dealing with research, by and large we're operating in an "open source" manner - i.e. the code that is used to perform the research is shared alongside the results so that people can view it. Just because the code is available doesn't mean that people get to do what they like with your code though. 
 
-It's always a good practice to add a license to go along with your code. A license is a document that lets people who come across the code what they're allowed to do with it, and what they're not. There are many open source licenses available and they vary in what behaviours they permit or restrict. When choosing an open source licence there are 3 main questions you need to answer:
+It's always a good practice to add a license to go along with your code. A license is a document that lets people who come across the code know what they're allowed to do with it, and what they're not. There are many open source licenses available and they vary in what behaviours they permit or restrict. When choosing an open source licence there are 3 main questions you need to answer:
 
 1. Do you care about how any modifications that people make to the code are distributed?
 2. Do you or your institution own any related software patents?
@@ -69,7 +71,7 @@ An extremely common license in research code/software is the MIT license which i
 
 ### The `usethis` Package
 
-The [`usethis`](https://usethis.r-lib.org) package is designed to assist in the creation of new packages and setting up of new projects. It is is an extremely useful package for several "workflow" tasks. It provides functions for many common workflow tasks such as creating new projects, adding README files, or opening R files. 
+The [`usethis`](https://usethis.r-lib.org) package is designed to assist in the creation of new packages and setting up of new projects. It is an extremely useful package for several "workflow" tasks. It provides functions for many common workflow tasks such as creating new projects, adding README files, or opening R files. 
 
 ```{r, eval = FALSE}
 # Create and open a new package
@@ -94,9 +96,11 @@ Once you have chosen an appropriate license, `usethis` likely has a template rea
 
 ### Configuration
 
-As part of the set up stage, we're also wanting to make things easier on ourselves to that we can be more productive during the "do stuff" stage.
+As part of the set up stage, we're also wanting to make things easier on ourselves so that we can be more productive during the "do stuff" stage.
 
-There is a hidden file called .Rprofile which is loaded as R launches and is a place where you can place customisations of options to make your R life easier. For instance I have mine set to automatically load workflow helper packages such as `usethis` `testthat` and `devtools`. And set a few options to make R produce more warnings so that it helps me know when something might cause an issue. It's also a good place to set some defaults such as your favourite CRAN mirror so that R doesn't need to ask you when you go to install packages.
+There is a hidden file called .Rprofile which is loaded as R launches and is a place where you can place customisations of options to make your R life easier. For instance I have mine set to automatically load workflow helper packages such as `usethis` `testthat` and `devtools` (but only if I'm in an interactive session). And set a few options to make R produce more warnings so that it helps me know when something might cause an issue. It's also a good place to set some defaults such as your favourite CRAN mirror so that R doesn't need to ask you when you go to install packages.
+
+These configurations are usually once-off set and forget type things that make your life slightly easier.
 
 ```{r, eval=FALSE}
 usethis::edit_r_profile()
@@ -134,7 +138,9 @@ Don't put analysis modifying options into your .Rprofile e.g. automatic loading 
 
 #### Keyboard shortcuts
 
-The keyboard shortcut to rule them all: <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>
+Part of improving efficiency in your workflow is getting to know some keyboard shortcuts to make life easier.
+
+In RStudio, the keyboard shortcut to rule them all is <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> which is the shortcut to display most of the in-built RStudio keyboard shortcuts.
 
 Other useful shortcuts
 
@@ -147,6 +153,7 @@ Keys | produces
 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>I</kbd> | Insert code chunk
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Source active file
 <kbd>Ctrl</kbd> + <kbd>.</kbd> | Go to file/function
+<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> | Jump to line
 
 Make your own...
 
@@ -156,25 +163,27 @@ Tools -> Modify Keyboard Shortcuts
 
 ### Scripts
 
-Establish the structure of how you want to capture your code. Are you going to do everything in Rscripts? RMarkdown? A combination? Create the appropriate script files. It can be useful to have a separate Rscript where you store functions that you create which can be 'sourced' into your other scripts through `source("scriptname.R)`.
+When we're thinking about our project and how we want to operate, this also involves establishing the structure of how you want to capture your code. It can be useful to separate steps of your project into their own script. When doing this, it is recommended to prefix the names of the scripts with a number which indicates the order in which the scripts are designed to be run. Thinking about and creating this structure of documents from the start can help with the development process as again, we're grouping similar things making it easier to know where to look later on.
+
+The choice of a plain R script or using something like RMarkdown can often come down to how much you want to take advantage of the extra functionality such as embedding of figures/tables or formatting of text.
+
+An RMarkdown can be a good format for creating a "main" workflow document that describes the individual steps of your workflow and can use `source` on R scripts that actually do the tasks (e.g.`source("scriptname.R)`). This starts to bring an aspect of modularity to your code and enables you to reuse the 'modules' in other documents. As projects grow, aiming for modularity is good, as it starts to consolidate your code base making it easier to maintain and reuse. Reusing code that has been tested can reduce development time and the likelihood of errors.
 
 \
 
 ### Initialise Version Control
 
-This section is a very brief overview of version control, specifically to say that you should start to build it into your workflow and we'll touch on it again in the [Automating Version Control](#auto-vc) section but ultimately the details are outside of the scope of this course.
+This section is a very brief overview of version control, specifically to say that you should start to build it into your workflow and we'll touch on it again in the [Automating Version Control](#auto-vc) section but ultimately the details are outside of the scope of this course as they take a course of their own to convey.
 
 You are likely familiar with versioning, usually people try to achieve this through file names. This is ok to a point but can cumbersome and doesn't scale well across multiple files nor does it give you an easy way to see exactly what the differences were between those files. This is where using version control software such as `git` can make your life easier.
 
 It's always a good idea to get this set up before you get under way doing actual work so that you can track you changes from the the very start. In the case of `git`, following [Happy Git with R](https://happygitwithr.com) for installing and configuring `git` and subsequently telling RStudio about your installation is a good place to start.
 
-Once you have RStudio set up with `git`, when you add (initialise) version control onto your project you'll get an new tab appear and a hidden directory called `.git` will be created inside your project directory. A directory under version control is called a 'repository' or 'repo'.
+Once you have RStudio set up with `git`, when you add (initialise) version control onto your project, you'll have a new tab appear and a hidden directory called `.git` will be created inside your project directory. A directory under version control is called a 'repository' or 'repo'. These repositories stored locally on your machine can be uploaded to remote, online code repository websites. Some popular ones are [GitHub](https://github.com), [GitLab](https://gitlab.com), or [BitBucket](https://bitbucket.com). These online sites offer the ability to create and store public or private repositories.
 
 ```{r, echo=FALSE, fig.align='center'}
 include_graphics("images/09-git_panel.png")
 ```
-
-
 
 Version control is used for keeping track of the changes made to your scripts, we don't usually use it to manage our data - since our initial raw data isn't going to be changing. For managing data, we use an appropriate backup or archiving system.
 
@@ -182,7 +191,7 @@ Version control is used for keeping track of the changes made to your scripts, w
 
 ## Testing and Adjusting
 
-Once things are set up, we're ready to actually start doing the work we want to do. As we develop our code however, we constantly cycle through testing and adjusting. Each piece of code we write needs to be checked that is is working correctly. Often this type of testing is performed manually as you go: 'does the line of code run?' - checking for syntax errors, and then 'does the output look right?'. When the answer to these either question is no, we then enter a debugging mode where we try and find out why the code isn't doing what we think it should be.   
+Once things are set up, we're ready to actually start doing the work we want to do. As we develop our code however, we constantly cycle through testing and adjusting. Each piece of code we write needs to be checked that it is working correctly. Often this type of testing is performed manually as you create it and try to run it asking 'does the line of code run?' - checking for syntax errors, and then 'does the output look right?'. When the answer to these either question is no, we then enter a debugging mode where we try and find out why the code isn't doing what we think it should.   
 
 \
 
@@ -196,7 +205,11 @@ Common types of errors we encounter are:
 - logical
 - runtime
 
-Syntactical errors are usually the most straight forward, the computer says that no straight away due to improper syntax. These are usually the easiest to find and correct. Logical errors come about through incorrect implementation of logic. The computer will run the code without complaint but the result isn't correct - these can be tricky to find and fix because they often involve checking each logical statement and subsequent code pathway in order to track down what is going wrong. Runtime errors are errors where you are trying to make the computer do something it can't in certain situations, such as storing a result in a certain location. The code will run sometimes but not others and again can be tricky to track down. 
+Syntactical errors are usually the most straight forward, the computer says that no straight away due to improper syntax. These are usually the easiest to find and correct. 
+
+Logical errors come about through incorrect implementation of logic. The computer will run the code without complaint but the result isn't correct - these can be tricky to find and fix because they often involve checking each logical statement and subsequent code pathway in order to track down what is going wrong. 
+
+Runtime errors are errors where you are trying to make the computer do something it can't in certain situations, such as storing a result in a certain location. The code will run sometimes but not others and again they can be tricky to track down. 
 
 Remember, each time we find and fix an error, we must retest. This can get quite laborious to do manually so we can find better systems to help such as [automatic testing](#automatic-tests) but first we'll cover some general principles on how to go about debugging.
 
@@ -210,7 +223,7 @@ knitr::include_graphics("images/09-fixing_problems.png")
 
 #### Where do I start?
 
-Knowing where to start debugging takes practice. some general good advice can be found in https://adv-r.hadley.nz/debugging.html with some specific tips and tricks for R. The general premise is that we want to test and confirm all of our assumptions.
+Knowing where to start debugging takes practice. Some general good advice can be found in https://adv-r.hadley.nz/debugging.html with some specific tips and tricks for R. The general premise is that we want to test and confirm all of our assumptions.
 
 > Finding your bug is a process of confirming the many things that you believe are true — until you find one which is not true.
 >
@@ -333,9 +346,9 @@ Caused by the a data type that doesn't coerce into a numeric automatically.
 
 ### Adjusting
 
-In the process of developing, it's also important to take opportunities to adjust how things are being done. Working code is better than no code, but you create more code it's also a good idea to every so often look for opportunities to make things better - efficiency or maintenance wise.
+In the process of developing, it's also important to take opportunities to adjust how things are being done. Working code is better than no code, but as you create more code it's also a good idea to every so often look for opportunities to make things better - efficiency or maintenance wise.
 
-Code replication is a good place to start - if you've found yourself copy and pasting the same code over in the same project, consider making it into a function. This then gives you a single place that needs to be changed. If you find yourself copy and pasting your functions across projects, consider creating your own package.
+Code replication is a good place to start - if you've found yourself copy and pasting the same code over in the same project, consider making it into a function. This then gives you a single place that needs to be changed. If you find yourself copy and pasting your functions across projects, consider creating your own package. The "rule" of three can be be a good guideline for this. If you've duplicated a line of code 3 or more times, consider turning it into a function. If you duplicate a function three or more times, consider putting it into a package. 
 
 \
 
@@ -349,7 +362,7 @@ Emily Riederer has a great blog post about [RMarkdown driven development](https:
 
 If you find yourself copy and pasting function between documents, it might be time to start creating your own package, that way you reduce the number of individual places your function is defined and this makes it easier in the future to maintain. Packages also bring in an extra level of utility in that you can improve documentation and implement automated testing so that you know when changes break functionality.
 
-If you want to look further into how to create packages, check out the [R Packages online book](https://r-pkgs.org/index.html) and you can use `usethis::create_package()` to create a new package from a template.
+If you want to look further into how to create packages, check out the [R Packages online book](https://r-pkgs.org/index.html) and you can use `usethis::create_package()` to create a new package from a template. Combined with the [`devtools`](https://devtools.r-lib.org) package it's possible to have a basic package created relatively quickly ([perhaps in 20 minutes](https://www.rstudio.com/resources/rstudioconf-2018/you-can-make-a-package-in-20-minutes-jim-hester/). If you're finding yourself creating functions that you are using in many projects, the time investment to learn how to create a package is well worth it.  
 
 \
 
